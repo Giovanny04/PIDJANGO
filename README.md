@@ -23,7 +23,7 @@ No ambiente Windows:
 
 ```console
 git clone https://github.com/Giovanny04/PIDJANGO.git
-cd django_biblioteca/
+cd biblioteca/
 virtualenv venv
 cd venv
 cd scripts

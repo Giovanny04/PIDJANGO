@@ -1,59 +1,66 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ebddcb;
+}
 
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #033649;
+    color: white;
+}
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.navbar-left, .navbar-center, .navbar-right {
+    display: flex;
+    align-items: center;
+}
 
-        .form-title {
-            text-align: center;
-        }
+.logo {
+    height: 50px;
+    width: auto;
+    margin-left: 20px;
+}
 
-        .form-field {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-        }
+.site-name {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
 
-        .form-field label {
-            font-weight: bold;
-        }
+.navbar-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
 
-        .form-field input[type="text"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+.navbar-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 20px;
+}
 
-        .form-submit {
-            text-align: center;
-        }
+.navbar-right a:hover {
+    text-decoration: underline;
+}
 
-        .form-submit input[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
 
-        .form-submit input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+/*Parte da responsividade que nao funciona como eu queria, ele nao faz a barrinha de opções */
 
-        .back-button {
-            text-align: center;
-            margin-top: 20px;
-        }
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-        
+    .navbar-left, .navbar-center, .navbar-right {
+        margin: 10px 0;
+    }
+
+    .navbar-center {
+        justify-content: flex-start;
+    }
+}
