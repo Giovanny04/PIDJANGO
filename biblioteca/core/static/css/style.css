@@ -4,63 +4,57 @@ body {
     background-color: #ebddcb;
 }
 
+/* Navbar padrão */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
     background-color: #033649;
+    color: #033649;
+    height: 60px;
+}
+.navbar .navbar-brand,
+.navbar-nav .nav-link {
     color: white;
 }
-
-.navbar-left, .navbar-center, .navbar-right {
-    display: flex;
-    align-items: center;
+.navbar .navbar-brand:hover,
+.navbar-nav .nav-link:hover {
+    color: #ebddcb;
 }
 
-.logo {
-    height: 50px;
-    width: auto;
-    margin-left: 20px;
+/* CSS da tela inicial */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
-
-.site-name {
+.btn-custom {
+    background-color: #036564;
     color: white;
-    text-decoration: none;
-    font-size: 24px;
+    width: 100%;
+    margin: 10px 0;
+}
+.btn-custom:hover {
+    background-color: #024f49;
 }
 
-.navbar-center {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
+/* Parte da tela de detalhes */
+.container {
+    padding: 20px;
+}
+.list-group-item {
+    margin-bottom: 10px;
 }
 
-.navbar-right a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    margin-right: 20px;
+/* Parte da tela de detalhes com card */
+.card {
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-
-.navbar-right a:hover {
-    text-decoration: underline;
+.card-title {
+    color: #036564;
 }
-
-
-/*Parte da responsividade que nao funciona como eu queria, ele nao faz a barrinha de opções */
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-left, .navbar-center, .navbar-right {
-        margin: 10px 0;
-    }
-
-    .navbar-center {
-        justify-content: flex-start;
-    }
+.btn-primary {
+    background-color: #036564;
+    border-color: #036564;
+}
+.btn-primary:hover {
+    background-color: #024f49;
+    border-color: #024f49;
 }

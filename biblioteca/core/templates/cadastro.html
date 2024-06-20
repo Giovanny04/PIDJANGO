@@ -1,63 +1,96 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="author" content="Bruno e Giovanny">
-        <link rel="stylesheet" href="{% static '/css/style.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <title>Biblioteca</title>
-    </head>
-    <body>
-        <br>
-        <h1> Biblioteca </h1>
-        <h2> Cadastro de Livros </h2>
-        <br>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Library Tech</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/x-icon" href="{% static 'css/logo.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
 
-        <form action={% url 'core:cadastro' %} novalidate method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h3>
-                {{ formulario_livro.titulo.label }} : {{ formulario_livro.titulo }}
-            </h3>
-            <br>
-            <h3>
-                {{ formulario_livro.editora.label }}: {{ formulario_livro.editora }}
-            </h3>
-            <br>
-            <h3>
-                {{ formulario_livro.autor.label }}: {{ formulario_livro.autor }}
-            </h3>
-            <br>
-            <h3>
-                {{ formulario_livro.isbn.label }}: {{ formulario_livro.isbn }}
-            </h3>
-            <br>
-            <h3>
-                {{ formulario_livro.numero_paginas.label }}: {{ formulario_livro.numero_paginas }}
-            </h3>
-            <br>
-            <h3>
-                {{ formulario_livro.ano_escrita.label }}: {{ formulario_livro.ano_escrita }}
-            </h3>
-            <br><br>
-            <center>
-                <input type="submit" value="Cadastrar"/>
-            </center>
+<body style="background-color: #e8ddcb;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="http://127.0.0.1:8000/">
+                <img src="{% static 'css/logo.png' %}" alt="Logo" class="logo" style="height: 40px;">
+                LibraryTech
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dev.html">Desenvolvedores</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="text-center">
+            <h1 class="mt-5 mb-4">Cadastro de livros</h1>
+        </div>
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">                
+                <form action="{% url 'core:cadastro' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_titulo" class="form-label">Título:</label>
+                        {{ formulario_livro.titulo }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_editora" class="form-label">Editora:</label>
+                        {{ formulario_livro.editora }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_autor" class="form-label">Autor:</label>
+                        {{ formulario_livro.autor }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_isbn" class="form-label">ISBN:</label>
+                        {{ formulario_livro.isbn }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_numero_paginas" class="form-label">Número de Páginas:</label>
+                        {{ formulario_livro.numero_paginas }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_ano_escrita" class="form-label">Ano de Escrita:</label>
+                        {{ formulario_livro.ano_escrita }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </form>
+
+                {% if formulario_livro.errors %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {% for field in formulario_livro %}
+                            {% for error in field.errors %}
+                                <strong>{{ error|escape }}</strong><br>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <form action="{% url 'core:index' %}" method="GET">
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-secondary">Voltar</button>
+            </div>
         </form>
-        {% if formulario_livro.errors %}
-            {% for field in formulario_livro %}
-                {% for error in field.errors %}
-                    <strong>{{ error|escape }}</strong><br>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
-
-        <center>
-            <form action={% url 'core:index' %} novalidate method="GET">
-                <input type="submit" value="Voltar"/>              
-            </form>
-        </center>
-    </body>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
